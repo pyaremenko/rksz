@@ -1,10 +1,10 @@
-package package1;
+package package1.Processors;
 
 import javax.crypto.Cipher;
 import java.nio.ByteBuffer;
 
 import static package1.Main.*;
-import static package1.crc16.*;
+
 public class Decryptor {
     public static Message decrypt(byte[] packet){
         try {

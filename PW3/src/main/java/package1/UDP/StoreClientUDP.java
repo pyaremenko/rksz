@@ -1,10 +1,12 @@
-package package1;
+package package1.UDP;
+
+import package1.Processors.Message;
 
 import java.io.IOException;
 import java.net.*;
 
-import static package1.Decryptor.decrypt;
-import static package1.Encryptor.encrypt;
+import static package1.Processors.Decryptor.decrypt;
+import static package1.Processors.Encryptor.encrypt;
 
 public class StoreClientUDP {
     private DatagramSocket socket;

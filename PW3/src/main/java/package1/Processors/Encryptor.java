@@ -1,10 +1,9 @@
-package package1;
+package package1.Processors;
 
 import javax.crypto.Cipher;
 import java.nio.ByteBuffer;
 
 import static package1.Main.*;
-import static package1.crc16.*;
 
 public class Encryptor {
     private static byte[] encryptMessage(Message message){

@@ -1,4 +1,4 @@
-package package1;
+package package1.Processors;
 
 import java.nio.ByteBuffer;
 
@@ -7,12 +7,12 @@ public class Goods {
     private int amount;
     private int type;
     private int price;
-
+    private String cmd;
     public String getCmd() {
         return cmd;
     }
 
-    private String cmd;
+
 
     public void setPrice(int price) {
         this.price = price;

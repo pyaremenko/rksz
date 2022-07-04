@@ -1,4 +1,4 @@
-package package1;
+package package1.Processors;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
@@ -47,8 +47,9 @@ public class Message {
     public Message(int cType, int bUserId, Goods goods) {
         this.cType = cType;
         this.bUserId = bUserId;
-        this.message = goods.toBytes();
         this.goods = goods;
+        this.message = goods.toBytes();
+
     }
 
     public Message(ByteBuffer byteBuffer, int wLen)
@@ -97,7 +98,7 @@ public class Message {
     }
     @Override
     public String toString() {
-        return "package1.Message{" +
+        return "package1.Processors.Message{" +
                 "cType = " + cType +
                 ", bUserId = " + bUserId +
                 ", message = " + messageToString() +

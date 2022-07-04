@@ -4,6 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import package1.Processors.Goods;
+import package1.Processors.Message;
+import package1.UDP.StoreClientUDP;
+import package1.UDP.StoreServerUDP;
 
 import java.io.IOException;
 

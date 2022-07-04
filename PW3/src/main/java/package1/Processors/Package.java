@@ -1,4 +1,4 @@
-package package1;
+package package1.Processors;
 
 import java.nio.ByteBuffer;
 
@@ -34,7 +34,7 @@ public class Package {
     }
     @Override
     public String toString() {
-        return "package1.Package{" +
+        return "package1.Processors.Package{" +
                 "bMagic=" + bMagic +
                 ", bSrc=" + bSrc +
                 ", bPktId=" + bPktId +
