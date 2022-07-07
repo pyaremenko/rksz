@@ -10,7 +10,6 @@ public class Encryptor {
         try {
             Cipher cipher = Cipher.getInstance(CIPHER);
             cipher.init(Cipher.ENCRYPT_MODE, SECRET_KEY);
-            message.doAction();
             byte[] encodedText = cipher.doFinal(message.getMessage());
             byte[] res = ByteBuffer.allocate(4 + 4 + encodedText.length)
                     .putInt(message.getcType())

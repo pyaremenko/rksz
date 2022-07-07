@@ -19,24 +19,4 @@ public class Main {
         secureRandom.nextBytes(secureRandomKeyBytes);
         return new SecretKeySpec(secureRandomKeyBytes, CIPHER);
     }
-
-//    public static void main(String[] args) {
-//        DBProcessor DBProcessor = new DBProcessor();
-//        DBProcessor.initialization();
-//        Create
-//        Read
-//        Update
-//        Delete
-//        List by criteria
-//        DBProcessor.createCategory(1,"vegetables");
-//        DBProcessor.createProducts("tomato", 1, 4, 11);
-//        DBProcessor.updateProduct(1, "tomato", 1, 12, 10);
-//        DBProcessor.updateCategory(1, "vegetables");
-//        DBProcessor.showCategoryData();
-//        DBProcessor.showProductData();
-//        DBProcessor.listProductByCategoryCriteria(2);
-//        DBProcessor.deleteCategory(1);
-//        DBProcessor.deleteProduct(1);
-//    }
-
 }

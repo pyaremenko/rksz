@@ -1,6 +1,7 @@
 package package1.UDP;
 
 import package1.Processors.Message;
+import package1.db.DBProcessor;
 
 import java.io.IOException;
 import java.net.*;
@@ -13,10 +14,12 @@ public class StoreServerUDP extends Thread {
     private DatagramSocket socket;
     private boolean running;
     private byte[] buf = new byte[256];
-
-    public StoreServerUDP() throws SocketException {
+    DBProcessor dbp;
+    public StoreServerUDP(DBProcessor d) throws SocketException {
+        this.dbp = d;
         socket = new DatagramSocket(4445);
         socket.setSoTimeout(5000);
+
     }
 
     public void run() {
@@ -29,7 +32,7 @@ public class StoreServerUDP extends Thread {
                     Message dec = decrypt(packet.getData());
                     InetAddress address = packet.getAddress();
                     int port = packet.getPort();
-                    Message message = process(dec);
+                    Message message = process(dec, dbp);
                     byte[] enc = encrypt(message);
 
                     packet = new DatagramPacket(enc, enc.length, address, port);
