@@ -27,7 +27,7 @@ public class SimpleHttpServer {
 
         renderDB();
         HttpServer server = HttpServer.create();
-        server.bind(new InetSocketAddress(1488), 0);
+        server.bind(new InetSocketAddress(6968), 0);
         HttpContext context = server.createContext("/", new EchoHandler());
         context.setAuthenticator(new Auth());
 
@@ -59,7 +59,7 @@ public class SimpleHttpServer {
                         JSONParser jsonParser = new JSONParser();
                         JSONObject product = (JSONObject) jsonParser.parse(new InputStreamReader(in, StandardCharsets.UTF_8));
                         if (existingID.contains(Integer.parseInt(id))) process("Error 404", 404, exchange);
-                        if (checkInput(product)) {
+                        if (!checkInput(product)) {
                             process("Error 409", 409, exchange);
                         } else {
                             productService.putNewProduct(product);
@@ -100,6 +100,10 @@ public class SimpleHttpServer {
                 User user = OBJECT_MAPPER.readValue(in, User.class);
                 if(Objects.equals(user.getLogin(), "root") && Objects.equals(user.getPassword(), "root")){
                     String jwt = JWT.createJWT(user.login);
+                    exchange.getResponseHeaders().add("jwt", jwt);
+//                    exchange.getRequestHeaders().add("jwt", jwt);
+                    System.out.println(exchange.getRequestBody().toString());
+
                     // input jwt to headers in postman (jwt : jwt)
                     process("{\"jwt\" : "+ jwt +" }", 200, exchange);
                 } else {
@@ -117,22 +121,22 @@ public class SimpleHttpServer {
         }
 
         public boolean checkInput(JSONObject product) {
-            if (product.containsKey("product_id") && ((long) product.get("product_id") <= 0)) {
-                return true;
+            if (product.containsKey("product_id") && ((long) product.get("product_id") >= 0)) {
+                return false;
             }
             if (product.containsKey("product_name") && (product.get("product_id").toString().isEmpty())) {
-                return true;
+                return false;
             }
-            if (product.containsKey("type") && ((long) product.get("type") <= 0)) {
-                return true;
+            if (product.containsKey("type") && ((long) product.get("type") >= 0)) {
+                return false;
             }
-            if (product.containsKey("amount") && ((long) product.get("amount") <= 0)) {
-                return true;
+            if (product.containsKey("amount") && ((long) product.get("amount") >= 0)) {
+                return false;
             }
-            if (product.containsKey("price") && ((long) product.get("price") <= 0)) {
-                return true;
+            if (product.containsKey("price") && ((long) product.get("price") >= 0)) {
+                return false;
             }
-            return false;
+            return true;
         }
     }
 
